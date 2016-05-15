@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#ensures that no args or options have been passed
+if [ $# -gt 0 ]
+then
+        echo "No arguments/options are allowed for this script!"
+else
+        if [ -z $TRASH ]
+        then
+                echo "The enironmental variable \"TRASH\" could not be located"
+
+                #this is redundant, but could come in hand for future upgrades
+                exit 1
+        else
+
+		#the inside of the garabge contianer is passed to the rm command. The rm
+		#	command recursively traverses all of the directories and files 
+		#	within the garbage container removing all of them.
+		/bin/rm -rf $TRASH/*
+	fi
+fi

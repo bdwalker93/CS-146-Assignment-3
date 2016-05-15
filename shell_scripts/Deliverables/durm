@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#ensures that no args or options have been passed
+if [ $# -gt 0 ]
+then
+	echo "No arguments/options are allowed for this script!"
+else
+        if [ -z $TRASH ]
+        then
+                echo "The enironmental variable \"TRASH\" could not be located"
+
+                #this is redundant, but could come in hand for future upgrades
+                exit 1
+        else
+		#flags get us the grand total space in human readable form.
+		#The operation is carried out on the "TRASH" directory to find
+		#	out how much disk space will be recovered in the case
+		#	of a trash call
+		echo "Size to be recovered by calling trash: $(du -hc $TRASH/* 2>/dev/null | grep total)"
+			
+	fi
+fi

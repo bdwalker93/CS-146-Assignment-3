@@ -1,0 +1,29 @@
+total 84
+-rw------- 1 walkerbd ugrad    3 Apr 22 11:43 0330A
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:42 033OA
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:47 #033OA
+-rw------- 1 walkerbd ugrad 1083 Apr 22 09:41 a
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a1
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a2
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a3
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:49 aaa^H^Hzzz
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:45 _##aasd
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:44 #asd&
+-rw------- 1 walkerbd ugrad 1083 Apr 22 09:41 b
+-rw------- 1 walkerbd ugrad    3 Apr 22 11:40 c
+-rw------- 1 walkerbd ugrad   97 Apr 22 11:41 d
+drwx------ 2 walkerbd ugrad 2048 Apr 19 17:56 d1
+drwx------ 3 walkerbd ugrad 2048 Apr 20 00:08 d2
+drwx------ 2 walkerbd ugrad 2048 Apr 19 17:57 d3
+-rw------- 1 walkerbd ugrad 1360 Apr 22 11:44 diff
+-rw------- 1 walkerbd ugrad    7 Apr 22 11:40 e
+-rw------- 1 walkerbd ugrad   13 Apr 22 11:40 f
+-rw------- 1 walkerbd ugrad  167 Apr 22 11:41 g
+-rw------- 1 walkerbd ugrad    0 Apr 22 12:55 l
+-rwx------ 1 walkerbd ugrad 2104 Apr 22 12:47 lss
+-rw------- 1 walkerbd ugrad 1453 Apr 22 12:55 lt1
+lrwxrwxrwx 1 walkerbd ugrad   26 Apr 22 09:19 symb_lnk_file -> ../../assign2/testing/soln
+lrwxrwxrwx 1 walkerbd ugrad   22 Apr 22 09:18 symb_lnk_folder -> ../../assign2/testing/
+-rw------- 1 walkerbd ugrad    0 Apr 22 00:18 ~tildaFile
+-rw------- 1 walkerbd ugrad   58 Apr 22 11:42 ~tildaFile~
+-rw------- 1 walkerbd ugrad   30 Apr 22 11:44 tmp

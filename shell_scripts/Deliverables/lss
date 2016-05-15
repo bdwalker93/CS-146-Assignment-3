@@ -1,0 +1,256 @@
+#!/bin/bash
+
+
+#this is our base flag for our command. From here everything will be 
+#	appended on.
+flag_str="-lS"
+
+#here is where all of the flags will be handled. Flags will be accounted for via
+#	corresponding variable which will be handled below. 
+while getopts ":aAbBcCdDFgGhHiklLmnNopqQrRsSTwxZ1" opt; do
+  case $opt in
+	#lowercase a flag
+	a)
+		#handleing -a  (do not ignore entries starting with .)
+		flag_str=$flag_str"a"	
+	;;
+	
+	#uppercase A flag
+        A)
+		#handleing -A (do not list implied . and ..)
+	        flag_str=$flag_str"A"	
+	;;
+	
+	#lowercase b flag
+        b)
+		#handleing -b (print C-style escapes for nongraphic characters)
+
+        	flag_str=$flag_str"b"
+	;;
+
+	#uppercase B flag
+        B)
+
+		#handleing -B (do not list implied entries ending with ~)
+       		flag_str=$flag_str"B"
+        ;;
+	
+        #uppercase C flag
+        C)
+		#handleing -C (list entries by columns)
+	        flag_str=$flag_str"C"
+        ;;
+
+        #lowercase d flag
+        d)
+		#handleing -d (list directories themselves, not their contents)
+       		flag_str=$flag_str"d"
+        ;;
+
+        #uppercase D flag
+        D)
+		#handleing -D (generate output designed for Emacs' dired mode)
+        	flag_str=$flag_str"D"
+        ;;
+        #uppercase F flag
+        F)
+		#handleing -F (append indicator (one of */=>@|) to entries)
+        	flag_str=$flag_str"F"
+        ;;
+
+        #lowercase g flag
+        g)
+		#handleing -g (like -l, but do not list owner)
+        	flag_str=$flag_str"g"
+        ;;
+
+        #uppercase G flag
+        G)
+		#handleing -G (in a long listing, don't print group names)
+	        flag_str=$flag_str"G"
+        ;;
+
+        #lowercase h flag
+        h)
+		#handleing -h ( with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G))
+        	flag_str=$flag_str"h"
+        ;;
+
+        #uppercase H flag
+        H)
+		#handleing -H (follow symbolic links listed on the command line)
+        	flag_str=$flag_str"H"
+        ;;
+
+        #lowercase i flag
+        i)
+		#handleing -i (print the index number of each file))
+        	flag_str=$flag_str"i"
+        ;;
+
+
+        #lowercase k flag
+        k)
+		#handleing -k (default to 1024-byte blocks for disk usage)
+        	flag_str=$flag_str"k"
+        ;;
+
+        #lowercase l flag
+        l)
+		#handleing -l (use a long listing format)
+        	flag_str=$flag_str"l"
+        ;;
+
+        #uppercase L flag
+        L)
+		#handleing -L (when showing file information for a symbolic link, show
+		#              information for the file the link references rather than for
+		#              the link itself))
+        	flag_str=$flag_str"L"
+        ;;
+
+        #lowercase m flag
+        m)
+		#handleing -m (fill width with a comma separated list of entries)
+        	flag_str=$flag_str"m"
+        ;;
+
+        #lowercase n flag
+        n)
+		#handleing -n (like -l, but list numeric user and group IDs)
+       		flag_str=$flag_str"n"
+       ;;
+
+        #uppercase N flag
+        N)
+		#handleing -N (print raw entry names (don't treat e.g. control characters specially))
+        	flag_str=$flag_str"N"
+         ;;
+
+        #lowercase o flag
+        o)
+		#handleing -o (like -l, but do not list group information)
+        	flag_str=$flag_str"o"
+        ;;
+
+        #lowercase p flag
+        p)
+		#handleing -p (append / indicator to directories)
+        	flag_str=$flag_str"p"
+        ;;
+
+        #lowercase 1 flag
+        q)
+		#handleing -q (print ? instead of nongraphic characters))
+        	flag_str=$flag_str"q"
+        ;;
+
+	#uppercase Q flag
+        Q)
+		#handleing -Q (enclose entry names in double quotes))
+        	flag_str=$flag_str"Q"
+        ;;
+
+        #lowercase r flag
+        r)
+		#handleing -r (reverse order while sorting)
+        	flag_str=$flag_str"r"
+        ;;
+
+        #uppercase R flag
+        R)
+		#handleing -R (list subdirectories recursively)
+        	flag_str=$flag_str"R"
+        ;;
+
+        #lowercase s flag
+        s)
+		#handleing -s (print the allocated size of each file, in blocks)
+        	flag_str=$flag_str"s"
+        ;;
+
+        #uppercase S flag
+        s)
+		#handleing -S (sort by file size, largest first)
+       		flag_str=$flag_str"S"
+        ;;
+
+        #uppercase T flag (assume tab stops at each COLS instead of 8)  (handled to take an arg with it rather than collecting a file later)
+        T)
+       	 	shift $(($OPTIND -1));
+        	primary_arg=$primary_arg"-T $1"        
+	;;
+	
+        #lowercase w flag (set output width to COLS.  0 means no limit) (handled to take an arg with it rather than collecting a file later)
+        w)
+       	 	shift $(($OPTIND -1));
+        	primary_arg=$primary_arg"-w $1"
+        ;;
+
+        #lowercase x flag
+        x)
+		#handleing -x (list entries by lines instead of by columns)
+        	flag_str=$flag_str"x"
+        ;;
+
+        #uppercase Z flag
+        Z)
+		#handleing -Z (print any security context of each file)
+        	flag_str=$flag_str"Z"
+        ;;
+
+        #number 1 flag
+        1)
+		#handleing -1 (list one file per line.  Avoid '\n' with -q or -b)
+        	flag_str=$flag_str"1"
+        ;;
+
+	#handles unknown flags. Kills script if found.
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		exit 1
+	;;
+
+	:)
+ 		echo Bad flag input!!! >&2
+		exit 1
+	;;
+  esac
+done
+
+
+#Shifts the OPTIND variable to move the flags out of the way
+shift $(($OPTIND -1));
+
+if [ $# -gt 0 ]
+then	
+
+	#appends the display directory only flag when a file is passed as
+	#	specificed by the assignment instructions (not counting
+	#	special flags)
+	flag_str=$flag_str"d"
+
+	#looping through all of the files passed in the commandline
+	for file 	
+	do
+		#piles up all of the files passed in
+		all_files=$all_files" "$file
+	done
+	
+	#output all of the files
+	/bin/ls $flag_str $primary_arg $all_files
+
+	echo This is the command str: "/bin/ls $flag_str $primary_arg $all_files"
+
+
+else
+	#output the current dir
+	/bin/ls $flag_str $primary_arg
+	echo This is the command str: "/bin/ls $flag_str $primary_arg $all_files"
+
+
+fi
+
+
+
+

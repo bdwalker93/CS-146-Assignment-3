@@ -1,0 +1,429 @@
+#!/bin/bash
+
+#here is where all of the flags will be handled. Flags will be accounted for via
+#	corresponding variable which will be handled below. 
+while getopts ":aAbBcCdDFgGhHiIklLmnNopqQrRsSTwxZ1" opt; do
+  case $opt in
+	#lowercase a flag
+	a)
+		a_flag=1
+	;;
+	
+	#uppercase A flag
+        A)
+		A_flag=1
+	;;
+	
+	#lowercase b flag
+        b)
+		b_flag=1
+        ;;
+
+	#uppercase B flag
+        B)
+		B_flag=1
+        ;;
+	
+        #uppercase C flag
+        C)
+                C_flag=1
+        ;;
+
+        #lowercase d flag
+        d)
+                d_flag=1
+        ;;
+
+        #uppercase D flag
+        ID)
+                D_flag=1
+        ;;
+        #uppercase F flag
+        F)
+                F_flag=1
+        ;;
+
+        #lowercase g flag
+        g)
+                g_flag=1
+        ;;
+
+        #uppercase G flag
+        G)
+                G_flag=1
+        ;;
+
+        #lowercase h flag
+        h)
+                h_flag=1
+        ;;
+
+        #uppercase H flag
+        H)
+                H_flag=1
+        ;;
+
+        #lowercase i flag
+        i)
+                i_flag=1
+        ;;
+
+        #uppercase I flag
+        I)
+                I_flag=1
+        ;;
+
+        #lowercase k flag
+        k)
+                k_flag=1
+        ;;
+
+        #lowercase l flag
+        l)
+                l_flag=1
+        ;;
+
+        #uppercase L flag
+        L)
+                L_flag=1
+        ;;
+
+        #lowercase m flag
+        m)
+                m_flag=1
+        ;;
+
+        #lowercase n flag
+        n)
+                n_flag=1
+        ;;
+
+        #uppercase N flag
+        N)
+                N_flag=1
+        ;;
+
+        #lowercase o flag
+        o)
+                o_flag=1
+        ;;
+
+        #lowercase p flag
+        p)
+                p_flag=1
+        ;;
+
+        #lowercase 1 flag
+        q)
+                q_flag=1
+        ;;
+
+	#uppercase Q flag
+        Q)
+                Q_flag=1
+        ;;
+
+        #lowercase r flag
+        r)
+                r_flag=1
+        ;;
+
+        #uppercase R flag
+        R)
+                R_flag=1
+        ;;
+
+        #lowercase s flag
+        s)
+                s_flag=1
+        ;;
+
+        #uppercase S flag
+        s)
+                S_flag=1
+        ;;
+
+        #uppercase T flag
+        T)
+                T_flag=1
+        ;;
+	
+        #lowercase w flag
+        w)
+                w_flag=1
+        ;;
+
+        #lowercase x flag
+        x)
+                x_flag=1
+        ;;
+
+        #uppercase Z flag
+        Z)
+                Z_flag=1
+        ;;
+
+        #number 1 flag
+        1)
+                _1_flag=1
+        ;;
+
+	#handles unknown flags. Kills script if found.
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		exit 1
+	;;
+
+	:)
+ 		echo Bad flag input!!! >&2
+		exit 1
+	;;
+  esac
+done
+
+#this is our base flag for our command. From here everything will be 
+#	appended on.
+flag_str="-lS"
+
+#handleing -a  (do not ignore entries starting with .)
+if [ $a_flag ]
+then
+	flag_str=$flag_str"a"	
+fi
+
+#handleing -A (do not list implied . and ..)
+if [ $A_flag ]
+then
+        flag_str=$flag_str"A"
+fi
+
+#handleing -b (print C-style escapes for nongraphic characters)
+if [ $b_flag ]
+then
+        flag_str=$flag_str"b"
+fi
+
+#handleing -B (do not list implied entries ending with ~)
+if [ $B_flag ]
+then
+        flag_str=$flag_str"B"
+fi
+
+#handleing -C (list entries by columns)
+if [ $C_flag ]
+then
+        flag_str=$flag_str"C"
+fi
+
+#handleing -d (list directories themselves, not their contents)
+if [ $d_flag ]
+then
+        flag_str=$flag_str"d"
+fi
+
+#handleing -D (generate output designed for Emacs' dired mode)
+if [ $D_flag ]
+then
+        flag_str=$flag_str"D"
+fi
+
+#handleing -F (append indicator (one of */=>@|) to entries)
+if [ $F_flag ]
+then
+        flag_str=$flag_str"F"
+fi
+
+#handleing -g (like -l, but do not list owner)
+if [ $g_flag ]
+then
+        flag_str=$flag_str"g"
+fi
+
+#handleing -G (like -l, but do not list owner)
+if [ $G_flag ]
+then
+        flag_str=$flag_str"G"
+fi
+
+#handleing -h ( with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G))
+if [ $h_flag ]
+then
+        flag_str=$flag_str"h"
+fi
+
+#handleing -H (follow symbolic links listed on the command line)
+if [ $H_flag ]
+then
+        flag_str=$flag_str"H"
+fi
+
+#handleing -i (print the index number of each file))
+if [ $i_flag ]
+then
+        flag_str=$flag_str"i"
+fi
+
+#handleing -k (default to 1024-byte blocks for disk usage)
+if [ $k_flag ]
+then
+        flag_str=$flag_str"k"
+fi
+
+#handleing -l (use a long listing format)
+if [ $l_flag ]
+then
+        flag_str=$flag_str"l"
+fi
+
+#handleing -L (when showing file information for a symbolic link, show
+#              information for the file the link references rather than for
+#              the link itself))
+if [ $L_flag ]
+then
+        flag_str=$flag_str"L"
+fi
+
+#handleing -m (fill width with a comma separated list of entries)
+if [ $m_flag ]
+then
+        flag_str=$flag_str"m"
+fi
+
+#handleing -n (like -l, but list numeric user and group IDs)
+if [ $n_flag ]
+then
+        flag_str=$flag_str"n"
+fi
+
+#handleing -N (print raw entry names (don't treat e.g. control characters specially))
+if [ $N_flag ]
+then
+        flag_str=$flag_str"N"
+fi
+
+#handleing -o (like -l, but do not list group information)
+if [ $o_flag ]
+then
+        flag_str=$flag_str"o"
+fi
+
+#handleing -p (append / indicator to directories)
+if [ $p_flag ]
+then
+        flag_str=$flag_str"p"
+fi
+
+#handleing -q (print ? instead of nongraphic characters))
+if [ $q_flag ]
+then
+        flag_str=$flag_str"q"
+fi
+
+
+#handleing -Q (enclose entry names in double quotes))
+if [ $Q_flag ]
+then
+        flag_str=$flag_str"Q"
+fi
+
+#handleing -r (reverse order while sorting)
+if [ $r_flag ]
+then
+        flag_str=$flag_str"r"
+fi
+
+#handleing -R (list subdirectories recursively)
+if [ $R_flag ]
+then
+        flag_str=$flag_str"R"
+fi
+
+#handleing -s (print the allocated size of each file, in blocks)
+if [ $s_flag ]
+then
+        flag_str=$flag_str"s"
+fi
+
+#handleing -S (sort by file size, largest first)
+if [ $S_flag ]
+then
+        flag_str=$flag_str"S"
+fi
+
+
+#handleing -x (list entries by lines instead of by columns)
+if [ $x_flag ]
+then
+        flag_str=$flag_str"x"
+fi
+
+#handleing -Z (print any security context of each file)
+if [ $Z_flag ]
+then
+        flag_str=$flag_str"Z"
+fi
+
+#handleing -1 (list one file per line.  Avoid '\n' with -q or -b)
+if [ $_1_flag ]
+then
+        flag_str=$flag_str"1"
+fi
+
+
+#***THE BELOW CASES ARE SPECIAL CASES THAT REQUIRE A SEPARATE ARG***
+#initialization for special cases
+primary_arg=""
+
+#handleing -I (do not list implied entries matching shell PATTERN)
+if [ $I_flag ]
+then
+        flag_str=$flag_str"I"
+	shift $(($OPTIND -1));
+	primary_arg=$1
+fi
+
+#handleing -T (assume tab stops at each COLS instead of 8)
+if [ $T_flag ]
+then
+        flag_str=$flag_str"T"
+        shift $(($OPTIND -1));
+        primary_arg=$1
+fi
+
+#handleing -w (set output width to COLS.  0 means no limit)
+if [ $w_flag ]
+then
+        flag_str=$flag_str"w"
+        shift $(($OPTIND -1));
+        primary_arg=$1
+fi
+
+
+#Shifts the OPTIND variable to move the flags out of the way
+shift $(($OPTIND -1));
+
+if [ $# -gt 0 ]
+then	
+	#appends the display directory only flag when a file is passed as
+	#	specificed by the assignment instructions
+	flag_str=$flag_str"d"
+	
+	#looping through all of the files passed in the commandline
+	for file 	
+	do
+		#piles up all of the files passed in
+		all_files=$all_files" "$file
+	done
+	
+	#output all of the files
+	/bin/ls $flag_str $primary_arg $all_files
+
+else
+	#output the current dir
+	/bin/ls $flag_str $primary_arg
+
+fi
+
+
+
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z $TRASH ]
+then
+	echo "The enironmental variable \"TRASH\" could not be located"
+
+        #this is redundant, but could come in hand for future upgrades
+        exit 1
+else
+        for file
+        do
+		echo "Restoring the content: \"$file\" to the current directory!"
+
+    	        #command execution
+                /bin/mv $TRASH/$file .
+        done
+fi

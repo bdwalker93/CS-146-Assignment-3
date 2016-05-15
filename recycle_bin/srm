@@ -1,0 +1,46 @@
+#!/bin/bash
+
+
+#goes ahead and checks for any arguments and implements them using **/bin/rm**
+#	Any arg set a flag to do a straight removal for this iteration of the 
+#	implementation
+while getopts ":" opt; do
+	case $opt in
+		\?) 
+			optionExists=1
+		;;
+	esac
+done
+
+#shifts to ignore param ar
+shift $(($OPTIND -1));
+
+
+#handles an options
+if [ $optionExists ]
+then
+	for delFile
+	do
+		echo "An option has been dected! Removing: $delFile using the /bin/rm" 
+		
+		#command execution
+		/bin/rm $delFile
+	done
+else
+	if [ -z $TRASH ]
+	then 
+		echo "The enironmental variable \"TRASH\" could not be located"
+
+		#this is redundant, but could come in hand for future upgrades
+		exit 1
+	else
+		for file
+		do
+			echo "Safe moving: \"$file\" to the \"$TRASH\" file!"
+			
+			#command execution
+			/bin/mv $file $TRASH
+		
+		done
+	fi
+fi

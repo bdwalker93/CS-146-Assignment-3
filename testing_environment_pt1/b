@@ -1,0 +1,21 @@
+total 40
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a1
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a2
+drwx------ 2 walkerbd ugrad 2048 Apr 22 09:28 a3
+drwx------ 2 walkerbd ugrad 2048 Apr 19 17:56 d1
+drwx------ 3 walkerbd ugrad 2048 Apr 20 00:08 d2
+drwx------ 2 walkerbd ugrad 2048 Apr 19 17:57 d3
+-rw------- 1 walkerbd ugrad 1083 Apr 22 09:41 a
+-rwx------ 1 walkerbd ugrad  846 Apr 22 09:27 lss
+lrwxrwxrwx 1 walkerbd ugrad   26 Apr 22 09:19 symb_lnk_file -> ../../assign2/testing/soln
+lrwxrwxrwx 1 walkerbd ugrad   22 Apr 22 09:18 symb_lnk_folder -> ../../assign2/testing/
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:41 b
+-rw------- 1 walkerbd ugrad    0 Apr 19 11:16 c
+-rw------- 1 walkerbd ugrad    0 Apr 19 11:16 d
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:33 diff
+-rw------- 1 walkerbd ugrad    0 Apr 19 11:16 e
+-rw------- 1 walkerbd ugrad    0 Apr 19 11:16 f
+-rw------- 1 walkerbd ugrad    0 Apr 19 11:16 g
+-rw------- 1 walkerbd ugrad    0 Apr 22 00:18 ~tildaFile
+-rw------- 1 walkerbd ugrad    0 Apr 22 00:19 ~tildaFile~
+-rw------- 1 walkerbd ugrad    0 Apr 22 09:33 tmp
